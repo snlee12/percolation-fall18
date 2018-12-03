@@ -2,14 +2,14 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class TestUFPercolation {
-	
+
 	public IPercolate getPercolator(int size) {
 		IUnionFind finder = new QuickUWPC();
-		//IPercolate perc = new PercolationUF(finder,size);
+		//IPercolate perc = new PercolationUF(size,finder);
 		//return perc;
 		return null;
 	}
-		
+
 	/**
 	 * This test checks if PercolationUF's isOpen method works correctly
 	 */
@@ -35,7 +35,7 @@ public class TestUFPercolation {
 				assertTrue("This test checks if PercolationUF's isFull method " + "works correctly", uf.isFull(i, j));
 			}
 	}
-	
+
 	/**
 	 * This test checks if PercolationUF' percolates method works correctly
 	 */
@@ -44,7 +44,7 @@ public class TestUFPercolation {
 		IPercolate uf = getPercolator(10);
 		testPercolates(uf);
 	}
-	
+
 
 	private void testPercolates(IPercolate perc) {
 		for (int i = 0; i < 9; i++)
@@ -57,7 +57,7 @@ public class TestUFPercolation {
 		assertTrue("This test checks if " + perc.getClass().getName() + "percolates method works correctly",
 				perc.percolates());
 	}
-	
+
 
 	/**
 	 * Check if Exception is thrown unless (0 <= i < N) and (0 <= j < N)

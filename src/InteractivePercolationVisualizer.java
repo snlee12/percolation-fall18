@@ -19,8 +19,10 @@ public class InteractivePercolationVisualizer {
 			N = Integer.parseInt(args[0]);
 		}
 
-		IPercolate perc = new PercolationDFS(N);
-		//IPercolate perc = new PercolationUF(new QuickFind(),N); 
+		//IPercolate perc = new PercolationBFS(N);
+		//IPercolate perc = new PercolationDFSFast(N);
+		//IPercolate perc = new PercolationDFS(N);
+		IPercolate perc = new PercolationUF(N,new QuickFind());
 
 		System.out.println(N);
 
@@ -55,7 +57,7 @@ public class InteractivePercolationVisualizer {
 				int vi = i-1;
 				int vj = j-1;
 				if (vi >= 0 && vi < N && vj >= 0 && vj < N) {
-					if (!perc.isOpen(vi, vj)) { 
+					if (!perc.isOpen(vi, vj)) {
 						opened++;
 						perc.open(vi, vj);
 						lastOpened[0] = vi;

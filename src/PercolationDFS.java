@@ -10,7 +10,7 @@ import java.util.Arrays;
  * and fields to be more consistent with Java/Duke standards and rewriting code
  * to reflect the DFS/flood-fill techniques used in discussion at Duke.
  * <P>
- * 
+ *
  * @author Kevin Wayne, wayne@cs.princeton.edu
  * @author Owen Astrachan, ola@cs.duke.edu
  * @author Jeff Forbes, forbes@cs.duke.edu
@@ -21,7 +21,7 @@ public class PercolationDFS implements IPercolate {
 	protected int myOpenCount;
 	/**
 	 * Initialize a grid so that all cells are blocked.
-	 * 
+	 *
 	 * @param n
 	 *            is the size of the simulated (square) grid
 	 */
@@ -33,7 +33,7 @@ public class PercolationDFS implements IPercolate {
 	}
 
 	public void open(int row, int col) {
-		
+
 		if (! inBounds(row,col)) {
 			throw new IndexOutOfBoundsException(
 					String.format("(%d,%d) not in bounds", row,col));
@@ -47,7 +47,7 @@ public class PercolationDFS implements IPercolate {
 	}
 
 	public boolean isOpen(int row, int col) {
-		
+
 		if (! inBounds(row,col)) {
 			throw new IndexOutOfBoundsException(
 					String.format("(%d,%d) not in bounds", row,col));
@@ -56,12 +56,12 @@ public class PercolationDFS implements IPercolate {
 	}
 
 	public boolean isFull(int row, int col) {
-		
+
 		if (! inBounds(row,col)) {
 			throw new IndexOutOfBoundsException(
 					String.format("(%d,%d) not in bounds", row,col));
 		}
-		
+
 		return myGrid[row][col] == FULL;
 	}
 
@@ -91,7 +91,7 @@ public class PercolationDFS implements IPercolate {
 	/**
 	 * Private helper method to mark all cells that are open and reachable from
 	 * (row,col).
-	 * 
+	 *
 	 * @param row
 	 *            is the row coordinate of the cell being checked/marked
 	 * @param col
@@ -100,11 +100,11 @@ public class PercolationDFS implements IPercolate {
 	protected void dfs(int row, int col) {
 		// out of bounds?
 		if (! inBounds(row,col)) return;
-		
+
 		// full or NOT open, don't process
 		if (isFull(row, col) || !isOpen(row, col))
 			return;
-		
+
 		myGrid[row][col] = FULL;
 		dfs(row - 1, col);
 		dfs(row, col - 1);
@@ -115,7 +115,7 @@ public class PercolationDFS implements IPercolate {
 	public int numberOfOpenSites() {
 		return myOpenCount;
 	}
-	
+
 	/**
 	 * Determine if (row,col) is valid for given grid
 	 * @param row specifies row
@@ -126,6 +126,6 @@ public class PercolationDFS implements IPercolate {
 		if (row < 0 || row >= myGrid.length) return false;
 		if (col < 0 || col >= myGrid[0].length) return false;
 		return true;
-	}
+	}	
 
 }
