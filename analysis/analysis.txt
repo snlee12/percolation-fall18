@@ -1,22 +1,62 @@
-Your name
-Your netid
-
-Copy/Paste results from PercolationStats using PercolationDFS
-
+Siyun Lee
+ssl36
 
 Copy/Paste results from PercolationStats using PercolationDFSFast
 
+simulation data for 20 trials
+grid    mean    stddev  time
+100     0.593   0.014   0.111
+200     0.591   0.010   0.137
+400     0.590   0.006   0.836
+800     0.594   0.004   6.058
+Exception in thread "main" java.lang.StackOverflowError
+        at PercolationDFS.dfs(PercolationDFS.java:109)
 
 Copy/Paste results from PercolationStats using PercolationBFS
 
+simulation data for 20 trials
+grid    mean    stddev  time
+100     0.593   0.014   0.165
+200     0.591   0.010   0.152
+400     0.590   0.006   0.817
+800     0.594   0.004   5.643
+1600    0.592   0.002   35.325
+3200    0.593   0.001   204.720
 
 Copy/Paste results from PercolationStats using PercolationUF 
 with the QuickUWPC UnionFind implementation.
 
+simulation data for 20 trials
+grid    mean    stddev  time
+100     0.593   0.014   0.120
+200     0.591   0.010   0.096
+400     0.590   0.006   0.606
+800     0.594   0.004   4.105
+1600    0.592   0.002   24.429
+3200    0.593   0.001   143.494
+
 1. How does doubling the grid size affect running time (keeping # trials fixed)
 
+It has minimal effect on smaller grids (as shown by 100 & 200), but as the grid sizes 
+become larger, the runtime for PercolationStats increases by a factor of about 6 every
+time the grid is doubled.
 
 2. How does doubling the number of trials affect running time.
 
+Doubling the number of trials simply doubles the time, as the program is being run twice. So
+if we ran the program 40 times instead of 20, the time should be doubled from what is seen 
+above. 
 
 3. Estimate the largest grid size you can run in 24 hours with 20 trials. Explain your reasoning.
+
+PercolationUF was the fastest, so I'll base my answer off of that. By continuing the pattern
+of increasing by a factor of 6, we should be able to see when the time passes 24 hours. 
+There are 86,400 seconds in 24 hours, so if we solve 143.494 * 6^n = 86,400, we should get
+how many times we can double the grid before it goes over 24 hours.
+
+We get that n = 3.6, which means the largest grid we can get by doubling is 25,600. There 
+is still time remaining before 24 hours is over, but we can't double it, otherwise it goes
+over. Also, without knowing the exact complexity of the program, we can't determine how much
+the runtime will increase when the grid is increased, but not quite doubled. 
+
+As a result, the largest grid we can get is between 25,600 and 51,200, but 25,600 to be safe.
